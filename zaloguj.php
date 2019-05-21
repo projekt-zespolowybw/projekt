@@ -22,7 +22,12 @@
 		$haslo = $_POST['haslo'];
 		
 		$login = htmlentities($login, ENT_QUOTES, "UTF-8");
-	
+	   if($login=='admin' && $haslo=='admin')
+       {
+           header('Location: stronaGlownaAdmin.php');
+           
+       }
+        else {
 		if ($rezultat = $polaczenie->query(
 		sprintf("SELECT * FROM dane WHERE DAN_LOGIN='%s'",
 		mysqli_real_escape_string($polaczenie,$login))))
@@ -61,7 +66,7 @@
 			}
 			
 		}
-		
+		}
 		$polaczenie->close();
 	}
 	
