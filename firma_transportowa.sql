@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 20 Maj 2019, 19:07
+-- Czas generowania: 21 Maj 2019, 20:04
 -- Wersja serwera: 10.1.38-MariaDB
 -- Wersja PHP: 7.3.2
 
@@ -56,7 +56,11 @@ CREATE TABLE `dane` (
 --
 
 INSERT INTO `dane` (`DAN_ID`, `DAN_IMIE`, `DAN_NAZWISKO`, `DAN_EMAIL`, `DAN_LOGIN`, `DAN_HASLO`) VALUES
-(1, 'andrzej', 'wrona', 'wrona@op.pl', 'wrona123', 'wrona123');
+(1, 'andrzej', 'wrona', 'wrona@op.pl', 'wrona123', 'wrona123'),
+(2, 'marian', 'pazdzioch', 'pazdzioch@op.pl', 'pazdzioch123', 'pazdzioch123'),
+(3, 'dupa', 'cycki', 'dupacycki@op.pl', 'dupacycki	', '$2y$10$.RW4uQSIDmO0GRPBgL8Y1uf/GVA9GOUCyhG4C4zvaq26T4GrEW.eG'),
+(4, 'bartosz', 'WojdaÅ‚owicz', 'bartek1@op.pl', 'bartek1', '$2y$10$xvJ1l2Qz0q7zcdssim5rE.iWwL9fSROPI4Sg.id0UztF73Z.JYfAy'),
+(5, 'Bartosz', 'WojdaÅ‚owicz', 'bartek@opp.pl', 'bartek2', '$2y$10$ai49lQgDz7hekmcp4E7JBuy7Pk7QST./A2SXEwH06jgvTNOoJwr7O');
 
 -- --------------------------------------------------------
 
@@ -237,7 +241,7 @@ ALTER TABLE `adres`
 -- AUTO_INCREMENT dla tabeli `dane`
 --
 ALTER TABLE `dane`
-  MODIFY `DAN_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `DAN_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT dla tabeli `filia`
