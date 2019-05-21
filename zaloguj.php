@@ -45,7 +45,7 @@
 					
 					unset($_SESSION['blad']);
 					$rezultat->free_result();
-					header('Location: rejestracja.php');
+					header('Location: stronaGlowna.php');
 				}
 				else 
 				{
