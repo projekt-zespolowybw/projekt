@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 20 Maj 2019, 19:07
+-- Czas generowania: 21 Maj 2019, 21:58
 -- Wersja serwera: 10.1.38-MariaDB
 -- Wersja PHP: 7.3.2
 
@@ -56,18 +56,11 @@ CREATE TABLE `dane` (
 --
 
 INSERT INTO `dane` (`DAN_ID`, `DAN_IMIE`, `DAN_NAZWISKO`, `DAN_EMAIL`, `DAN_LOGIN`, `DAN_HASLO`) VALUES
-(1, 'andrzej', 'wrona', 'wrona@op.pl', 'wrona123', 'wrona123');
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `filia`
---
-
-CREATE TABLE `filia` (
-  `FIL_ID` int(11) NOT NULL,
-  `FIL_NAZWA` text COLLATE utf8mb4_polish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+(1, 'andrzej', 'wrona', 'wrona@op.pl', 'wrona123', 'wrona123'),
+(2, 'marian', 'pazdzioch', 'pazdzioch@op.pl', 'pazdzioch123', 'pazdzioch123'),
+(3, 'dupa', 'cycki', 'dupacycki@op.pl', 'dupacycki	', '$2y$10$.RW4uQSIDmO0GRPBgL8Y1uf/GVA9GOUCyhG4C4zvaq26T4GrEW.eG'),
+(4, 'bartosz', 'WojdaÅ‚owicz', 'bartek1@op.pl', 'bartek1', '$2y$10$xvJ1l2Qz0q7zcdssim5rE.iWwL9fSROPI4Sg.id0UztF73Z.JYfAy'),
+(5, 'Bartosz', 'WojdaÅ‚owicz', 'bartek@opp.pl', 'bartek2', '$2y$10$ai49lQgDz7hekmcp4E7JBuy7Pk7QST./A2SXEwH06jgvTNOoJwr7O');
 
 -- --------------------------------------------------------
 
@@ -79,7 +72,8 @@ CREATE TABLE `grafik` (
   `GRA_ID` int(11) NOT NULL,
   `GRA_DATAOD` date NOT NULL,
   `GRA_DATADO` date NOT NULL,
-  `GRA_KURS` int(11) NOT NULL
+  `KUR_ID` int(11) NOT NULL,
+  `KIE_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 -- --------------------------------------------------------
@@ -91,7 +85,8 @@ CREATE TABLE `grafik` (
 CREATE TABLE `kierowca` (
   `KIE_ID` int(11) NOT NULL,
   `KIE_LICENCJA` date NOT NULL,
-  `KIE_ILOSCKM` int(11) NOT NULL
+  `KIE_ILOSCKM` int(11) NOT NULL,
+  `PRA_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 -- --------------------------------------------------------
@@ -101,8 +96,10 @@ CREATE TABLE `kierowca` (
 --
 
 CREATE TABLE `klient` (
-  `KLI_id` int(11) NOT NULL,
-  `KLI_PUNKTY` int(10) NOT NULL
+  `KLI_ID` int(11) NOT NULL,
+  `KLI_PUNKTY` int(10) NOT NULL,
+  `DAN_ID` int(11) NOT NULL,
+  `ADR_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 -- --------------------------------------------------------
@@ -136,6 +133,13 @@ CREATE TABLE `pojazd` (
   `POJ_PRZEGLAD` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
+--
+-- Zrzut danych tabeli `pojazd`
+--
+
+INSERT INTO `pojazd` (`POJ_ID`, `POJ_MARKA`, `POJ_MODEL`, `POJ_REJESTRACJA`, `POJ_ROCZNIK`, `POJ_PRZEGLAD`) VALUES
+(1, 'audi', 'q7', 'KT093421', '2017-12-03', '2019-11-30');
+
 -- --------------------------------------------------------
 
 --
@@ -144,7 +148,9 @@ CREATE TABLE `pojazd` (
 
 CREATE TABLE `pracownik` (
   `PRA_ID` int(11) NOT NULL,
-  `PRA_DZIAL` text COLLATE utf8mb4_polish_ci NOT NULL
+  `PRA_DZIAL` text COLLATE utf8mb4_polish_ci NOT NULL,
+  `DAN_ID` int(11) NOT NULL,
+  `ADR_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 -- --------------------------------------------------------
@@ -156,7 +162,9 @@ CREATE TABLE `pracownik` (
 CREATE TABLE `rezerwacje` (
   `REZ_ID` int(11) NOT NULL,
   `REZ_DATA` date NOT NULL,
-  `REZ_CENA` float NOT NULL
+  `REZ_CENA` float NOT NULL,
+  `KLI_ID` int(11) NOT NULL,
+  `KUR_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
@@ -176,12 +184,6 @@ ALTER TABLE `dane`
   ADD PRIMARY KEY (`DAN_ID`);
 
 --
--- Indeksy dla tabeli `filia`
---
-ALTER TABLE `filia`
-  ADD PRIMARY KEY (`FIL_ID`);
-
---
 -- Indeksy dla tabeli `grafik`
 --
 ALTER TABLE `grafik`
@@ -197,7 +199,7 @@ ALTER TABLE `kierowca`
 -- Indeksy dla tabeli `klient`
 --
 ALTER TABLE `klient`
-  ADD PRIMARY KEY (`KLI_id`);
+  ADD PRIMARY KEY (`KLI_ID`);
 
 --
 -- Indeksy dla tabeli `kurs`
@@ -237,13 +239,7 @@ ALTER TABLE `adres`
 -- AUTO_INCREMENT dla tabeli `dane`
 --
 ALTER TABLE `dane`
-  MODIFY `DAN_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT dla tabeli `filia`
---
-ALTER TABLE `filia`
-  MODIFY `FIL_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `DAN_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT dla tabeli `grafik`
@@ -261,7 +257,7 @@ ALTER TABLE `kierowca`
 -- AUTO_INCREMENT dla tabeli `klient`
 --
 ALTER TABLE `klient`
-  MODIFY `KLI_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `KLI_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `kurs`
@@ -273,7 +269,7 @@ ALTER TABLE `kurs`
 -- AUTO_INCREMENT dla tabeli `pojazd`
 --
 ALTER TABLE `pojazd`
-  MODIFY `POJ_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `POJ_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT dla tabeli `pracownik`
