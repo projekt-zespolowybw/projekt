@@ -10,21 +10,27 @@
 		$imie = $_POST['imie'];}
 
 
-if (isset($_POST['nazwisko']))
+    if (isset($_POST['nazwisko']))
     {   $wszystko_OK=true;
 
 		$nazwisko = $_POST['nazwisko'];}
+		
+	if (isset($_POST['dzial']))
+    {   
+		$wszystko_OK=true;
+		$dzial = $_POST['dzial'];
+	}
+		
 
 	if (isset($_POST['email']))
 	{
 		$wszystko_OK=true;
-
 		$nick = $_POST['nick'];
 		
 		if ((strlen($nick)<3) || (strlen($nick)>20))
 		{
 			$wszystko_OK=false;
-			$_SESSION['e_nick']="nazwa użytkownika musi posiadać od 3 do 20 znaków!";
+			$_SESSION['e_nick']="Nick musi posiadać od 3 do 20 znaków!";
 		}
 		
 		//if (ctype_alnum($nick)==false)
@@ -58,12 +64,7 @@ if (isset($_POST['nazwisko']))
 		}	
 
 		$haslo_hash = password_hash($haslo1, PASSWORD_DEFAULT);
-		
-		//if (!isset($_POST['regulamin']))
-		/*{
-			$wszystko_OK=false;
-			$_SESSION['e_regulamin']="Potwierdź akceptację regulaminu!";
-		}*/				
+						
 		
 		$_SESSION['fr_nick'] = $nick;
 		$_SESSION['fr_email'] = $email;
@@ -108,15 +109,13 @@ if (isset($_POST['nazwisko']))
 				if ($wszystko_OK==true)
 				{
 					
-					if ($polaczenie->query("INSERT INTO firma_transportowa.dane VALUES (NULL, '$imie','$nazwisko', '$email','$nick','$haslo_hash', 1)"))
-					{
-						$_SESSION['udanarejestracja']=true;
-						header('Location: index.php');
-					}
-					else
-					{
-						throw new Exception($polaczenie->error);
-					}
+					$polaczenie->query("INSERT INTO firma_transportowa.dane VALUES (NULL, '$imie','$nazwisko', '$email','$nick','$haslo_hash',0)");
+
+                        
+                        $polaczenie->query("INSERT INTO firma_transportowa.pracownik VALUES (NULL,'$dzial',LAST_INSERT_ID())");
+                        $_SESSION['udanarejestracja']=true;
+                        header('Location: stronaGlownaAdmin.php');
+                        
 					
 				}
 				
@@ -193,6 +192,15 @@ if (isset($_POST['nazwisko']))
 			}
 		?>
 		
+		
+		dzial: <br /> 
+			<select name="dzial">
+				<option>sekretariat</option>
+				<option>zarząd</option>
+				<option>kierowcy</option>
+					</select>
+					<br />
+		
 		Twoje hasło: <br /> <input type="password"  value="<?php
 			if (isset($_SESSION['fr_haslo1']))
 			{
@@ -217,11 +225,18 @@ if (isset($_POST['nazwisko']))
 			}
 		?>" name="haslo2" /><br />
 		
+		<?php
+			if (isset($_SESSION['e_regulamin']))
+			{
+				echo '<div class="error">'.$_SESSION['e_regulamin'].'</div>';
+				unset($_SESSION['e_regulamin']);
+			}
+		?>	
 
 		
 		<br />
 		
-		<input type="submit" value="Zarejestruj pracownika" />
+		<input type="submit" value="Zarejestruj się" />
 		
 	</form>
 
