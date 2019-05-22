@@ -10,7 +10,7 @@
 		$imie = $_POST['imie'];}
 
 
-if (isset($_POST['nazwisko']))
+    if (isset($_POST['nazwisko']))
     {   $wszystko_OK=true;
 
 		$nazwisko = $_POST['nazwisko'];}
@@ -18,7 +18,6 @@ if (isset($_POST['nazwisko']))
 	if (isset($_POST['email']))
 	{
 		$wszystko_OK=true;
-
 		$nick = $_POST['nick'];
 		
 		if ((strlen($nick)<3) || (strlen($nick)>20))
@@ -108,7 +107,7 @@ if (isset($_POST['nazwisko']))
 				if ($wszystko_OK==true)
 				{
 					
-					if ($polaczenie->query("INSERT INTO firma_transportowa.dane VALUES (NULL, '$imie','$nazwisko', '$email','$nick','$haslo_hash')"))
+					if ($polaczenie->query("INSERT INTO firma_transportowa.dane VALUES (NULL, '$imie','$nazwisko', '$email','$nick','$haslo_hash',0)"))
 					{
 						$_SESSION['udanarejestracja']=true;
 						header('Location: index.php');

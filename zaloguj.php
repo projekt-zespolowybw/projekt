@@ -45,12 +45,20 @@
 				$_SESSION['nazwisko'] = $wiersz['DAN_NAZWISKO'];
 				$_SESSION['email'] = $wiersz['DAN_EMAIL'];
 				$_SESSION['login'] = $wiersz['DAN_LOGIN'];
-					
+				$_SESSION['pracownik'] = $wiersz['DAN_PRACOWNIK'];	
 
 					
 					unset($_SESSION['blad']);
 					$rezultat->free_result();
-					header('Location: stronaGlowna.php');
+					
+                    if ($_SESSION['pracownik']==0)
+                   { 
+                    header('Location: stronaGlowna.php');}
+                    
+                    else {
+                         
+                        header('Location: stronaPracownika.php');
+                    }
 				}
 				else 
 				{

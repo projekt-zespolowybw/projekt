@@ -15,10 +15,7 @@
 
 <body>
 	
-<p>Witaj na stronie głownej dla administratora , udało Ci się zalogować</p>
-    <a href="dodajPojazd.php">Dodaj pojazd</a>
-	<br/><br/>
-		<a href="dodajPracownika.php">Dodaj pracownika</a>
+<p>Witaj na stronie głownej dla pracowników , udało Ci się zalogować</p>
 	<br/><br/>
 		<a href="raport.php">Generuj raport</a>
 	<br/><br/>
