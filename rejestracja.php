@@ -107,15 +107,16 @@
 				if ($wszystko_OK==true)
 				{
 					
-					if ($polaczenie->query("INSERT INTO firma_transportowa.dane VALUES (NULL, '$imie','$nazwisko', '$email','$nick','$haslo_hash',0)"))
-					{
-						$_SESSION['udanarejestracja']=true;
-						header('Location: index.php');
-					}
-					else
-					{
-						throw new Exception($polaczenie->error);
-					}
+					$polaczenie->query("INSERT INTO firma_transportowa.dane VALUES (NULL, '$imie','$nazwisko', '$email','$nick','$haslo_hash',0)");
+                    
+                        
+                     
+                        
+                        $polaczenie->query("INSERT INTO firma_transportowa.klient VALUES (NULL,100,LAST_INSERT_ID())");
+                        $_SESSION['udanarejestracja']=true;
+                        header('Location: index.php');
+                        
+					
 					
 				}
 				
