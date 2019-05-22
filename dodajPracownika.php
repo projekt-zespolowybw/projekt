@@ -64,18 +64,13 @@
 		}	
 
 		$haslo_hash = password_hash($haslo1, PASSWORD_DEFAULT);
-		
-		if (!isset($_POST['regulamin']))
-		{
-			$wszystko_OK=false;
-			$_SESSION['e_regulamin']="Potwierdź akceptację regulaminu!";
-		}				
+						
 		
 		$_SESSION['fr_nick'] = $nick;
 		$_SESSION['fr_email'] = $email;
 		$_SESSION['fr_haslo1'] = $haslo1;
 		$_SESSION['fr_haslo2'] = $haslo2;
-		if (isset($_POST['regulamin'])) $_SESSION['fr_regulamin'] = true;
+		//if (isset($_POST['regulamin'])) $_SESSION['fr_regulamin'] = true;
 		
 		require_once "connect.php";
 		mysqli_report(MYSQLI_REPORT_STRICT);
@@ -108,7 +103,7 @@
 				if($ile_takich_nickow>0)
 				{
 					$wszystko_OK=false;
-					$_SESSION['e_nick']="Taki gracz juz istnieje";
+					$_SESSION['e_nick']="Taki pracownik juz istnieje";
 				}
 				
 				if ($wszystko_OK==true)
@@ -119,7 +114,7 @@
                         
                         $polaczenie->query("INSERT INTO firma_transportowa.pracownik VALUES (NULL,'$dzial',LAST_INSERT_ID())");
                         $_SESSION['udanarejestracja']=true;
-                        header('Location: index.php');
+                        header('Location: stronaGlownaAdmin.php');
                         
 					
 				}
@@ -229,16 +224,6 @@
 				unset($_SESSION['fr_haslo2']);
 			}
 		?>" name="haslo2" /><br />
-		
-		<label>
-			<input type="checkbox" name="regulamin" <?php
-			if (isset($_SESSION['fr_regulamin']))
-			{
-				echo "checked";
-				unset($_SESSION['fr_regulamin']);
-			}
-				?>/> Akceptuję regulamin
-		</label>
 		
 		<?php
 			if (isset($_SESSION['e_regulamin']))
