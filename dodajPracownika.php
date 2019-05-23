@@ -109,7 +109,7 @@
 				if ($wszystko_OK==true)
 				{
 					
-					$polaczenie->query("INSERT INTO firma_transportowa.dane VALUES (NULL, '$imie','$nazwisko', '$email','$nick','$haslo_hash',0)");
+					$polaczenie->query("INSERT INTO firma_transportowa.dane VALUES (NULL, '$imie','$nazwisko', '$email','$nick','$haslo_hash',1)");
 
                         
                         $polaczenie->query("INSERT INTO firma_transportowa.pracownik VALUES (NULL,'$dzial',LAST_INSERT_ID())");

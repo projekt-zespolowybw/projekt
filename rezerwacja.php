@@ -1,44 +1,83 @@
 <?php
-    session_start();   
+				
+   session_start();   
     require_once "connect.php";
 
+
     echo "rezerwacja";
-	if (isset($_POST['rezerwacja']))
+	if (isset($_POST['iloscMiejsc']) && isset($_POST['godzinaOdjazdu']) && isset($_POST['przystanekPoczatkowy']) && isset($_POST['rezerwacja']))
     {   
-        $wszystko_OK=true;
         
+        require_once "connect.php";
+		mysqli_report(MYSQLI_REPORT_STRICT);
         
 		$godzinaOdjazdu = $_POST['godzinaOdjazdu'];
         $przystanekPoczatkowy = $_POST['przystanekPoczatkowy'];
         $iloscMiejsc = $_POST['iloscMiejsc'];
-        //header('Location: stronaGlowna.php');
-
         
+        
+        	echo $godzinaOdjazdu ;
+            echo $przystanekPoczatkowy ;
+            echo $iloscMiejsc ;
+        
+        
+        
+        
+        try 
+		{
 			$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
 			if ($polaczenie->connect_errno!=0)
 			{
-				echo "wystąpił błąd połączenia z bazą";
-                 header('Location: index.php');
+				throw new Exception(mysqli_connect_errno());
+                $wszystko_OK==false;
 			}
 			else
 			{
+				
+                   $aktualnaData = date('Y-m-d H:i:s');
+                    echo  $aktualnaData;
                 
-                $aktualnaData =date('Y-m-d H:i:s');
-                echo  $aktualnaData;
-            $rezultat = $polaczenie->query("SELECT KUR_ID FROM firma_transportowa.kurs WHERE KUR_POCZATEK = '$przystanekPoczatkowy' AND KUR_DATAPOCZ='$godzinaOdjazdu'");
                 
-                $idKursu = $rezultat->fetch_assoc();
-                $idKlienta=$_SESSION['id'];
-                				$kurs = $idKursu['KUR_ID'];
+                        $idKlienta=$_SESSION['id'] ;
+                    
+                        $rezultat1=$polaczenie->query("SELECT KLI_ID FROM firma_transportowa.klient WHERE DAN_ID='$idKlienta'");
+                
+                            $idKlienta = $rezultat1->fetch_assoc();
+                            $klient= $idKlienta['KLI_ID'];
+                            
+                                                        
+                        $rezultat=$polaczenie->query("SELECT KUR_ID FROM firma_transportowa.kurs WHERE KUR_POCZATEK = '$przystanekPoczatkowy' AND KUR_DATAPOCZ='$godzinaOdjazdu'");
+                
+                            $idKursu = $rezultat->fetch_assoc();
+                            $kurs = $idKursu['KUR_ID'];
+                
+					
+                            $polaczenie->query("INSERT INTO firma_transportowa.rezerwacje VALUES (NULL,'$aktualnaData','$iloscMiejsc'*15,'$klient','$kurs')");
+                
+					
 
-                
-                $polaczenie->query("INSERT INTO firma_transportowa.rezerwacje VALUES (NULL,'$aktualnaData','$iloscMiejsc','$idKlienta','$kurs')");
-              //  sleep(10);
-                                 header('Location: stronaGlowna.php');
 
-            }
+                    				
+					
+				}
+				$polaczenie->close();
+
+			}
+			
+		
+		catch(Exception $e)
+		{
+			echo '<span style="color:red;">Błąd serwera!</span>';
+			echo '<br />Informacja developerska: '.$e;
+		}
+
+        $godzinaOdjazdu = NULL;
+        $przystanekPoczatkowy = NULL;
+        $iloscMiejsc = NULL;
+
+        header ('Location: stronaGlowna.php');
+        
     }
-
 
 ?>
 
