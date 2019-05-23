@@ -15,7 +15,9 @@
 
 <body>
 	
-
+    <a href="rezerwacja.php">zarezerwuj bilet</a>
+	<br /><br />
+	
 	
 	<a href="logout.php">wyloguj</a>
 	<br /><br />

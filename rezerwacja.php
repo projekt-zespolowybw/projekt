@@ -3,7 +3,7 @@
     require_once "connect.php";
 
     echo "rezerwacja";
-	if (isset($_POST['godzinaOdjazdu']) && isset($_POST['przystanekPoczątkowy']) && isset($_POST['iloscMiejsc']) && isset($_POST['rezerwacja']))
+	if (isset($_POST['rezerwacja']))
     {   
         $wszystko_OK=true;
         
@@ -11,7 +11,7 @@
 		$godzinaOdjazdu = $_POST['godzinaOdjazdu'];
         $przystanekPoczatkowy = $_POST['przystanekPoczatkowy'];
         $iloscMiejsc = $_POST['iloscMiejsc'];
-        header('Location: stronaGlowna.php');
+        //header('Location: stronaGlowna.php');
 
         
 			$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
@@ -29,7 +29,10 @@
                 
                 $idKursu = $rezultat->fetch_assoc();
                 $idKlienta=$_SESSION['id'];
-          $polaczenie->query("INSERT INTO firma_transportowa.rezerwacje VALUES (NULL,'$aktualnaData','$iloscMiejsc','$idKlienta','$idKursu')");
+                				$kurs = $idKursu['KUR_ID'];
+
+                
+                $polaczenie->query("INSERT INTO firma_transportowa.rezerwacje VALUES (NULL,'$aktualnaData','$iloscMiejsc','$idKlienta','$kurs')");
               //  sleep(10);
                                  header('Location: stronaGlowna.php');
 
