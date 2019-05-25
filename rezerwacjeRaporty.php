@@ -11,6 +11,7 @@ table, th, td {
 </head>
 <body>
 	<form method="post">
+		sortowanie
 		<select name="sortuj">
 		<option value="DAN_IMIE">imie</option>
 		<option value="DAN_NAZWISKO">nazwisko</option>
@@ -21,16 +22,30 @@ table, th, td {
 		<option value="REZ_CENA">cena rezerwacji</option>
 		</select>
 		<br />
-		
+		wyszukiwanie po:
+		<br />
+		<select name="szukajTabela">
+		<option value="DAN_IMIE">imie</option>
+		<option value="DAN_NAZWISKO">nazwisko</option>
+		<option value="DAN_LOGIN">login</option>
+		<option value="DAN_EMAIL">email</option>
+		<option value="REZ_ID">id rezerwacji</option>
+		<option value="REZ_DATA">data rezerwacji</option>
+		<option value="REZ_CENA">cena rezerwacji</option>
+		</select>
+		<input type="text" name="wyszukaj"/>
 		<input type="submit" value="sortuj" />
+		<br /><br />
 	</form>
 
 <?php
    session_start();   
     require_once "connect.php";
-	if (isset($_POST['sortuj']))
+	if (isset($_POST['sortuj'])&&isset($_POST['wyszukaj'])&&isset($_POST['szukajTabela']))
 	{
-		$sortuj = $_POST['sortuj'];
+		$sortuj 		= $_POST['sortuj'];
+		$wyszukaj 		= $_POST['wyszukaj'];
+		$szukajTabela 	= $_POST['szukajTabela'];
 	}
 	try
 	{
@@ -42,7 +57,7 @@ table, th, td {
 		} 
 
 		
-		$sql = "SELECT klient.KLI_ID, DAN_IMIE, DAN_NAZWISKO, DAN_EMAIL, DAN_LOGIN, REZ_ID, REZ_DATA, REZ_CENA FROM klient, dane, rezerwacje WHERE klient.DAN_ID = dane.DAN_ID AND klient.KLI_ID = rezerwacje.KLI_ID ORDER BY $sortuj";
+		$sql = "SELECT klient.KLI_ID, DAN_IMIE, DAN_NAZWISKO, DAN_EMAIL, DAN_LOGIN, REZ_ID, REZ_DATA, REZ_CENA FROM klient, dane, rezerwacje WHERE klient.DAN_ID = dane.DAN_ID AND klient.KLI_ID = rezerwacje.KLI_ID AND $szukajTabela LIKE '%$wyszukaj%' ORDER BY $sortuj";
 		$result = $poloczenie->query($sql);
 
 		if ($result->num_rows > 0)
