@@ -83,14 +83,27 @@ table, th, td {
 		<option value="KLI_PUNKTY">punkty</option>
 		</select>
 		<br />
-		
+		wyszukiwanie po:
+		<br />
+		<select name="szukajTabela">
+		<option value="DAN_IMIE">imie</option>
+		<option value="DAN_NAZWISKO">nazwisko</option>
+		<option value="DAN_LOGIN">login</option>
+		<option value="DAN_EMAIL">email</option>
+		<option value="REZ_ID">id rezerwacji</option>
+		<option value="REZ_DATA">data rezerwacji</option>
+		<option value="REZ_CENA">cena rezerwacji</option>
+		</select>
+		<input type="text" name="wyszukaj"/>
+		<input type="submit" value="sortuj" />
+		<br /><br />
 		<input type="submit" value="pokaż dane" />
 	</form>
 
 <?php
    session_start();   
     require_once "connect.php";
-	if (isset($_POST['pierwszePole'])&&isset($_POST['drugiePole'])&&isset($_POST['trzeciePole'])&&isset($_POST['czwartePole'])&&isset($_POST['piatePole'])&&isset($_POST['szostePole'])&&isset($_POST['sortuj']))
+	if (isset($_POST['pierwszePole'])&&isset($_POST['drugiePole'])&&isset($_POST['trzeciePole'])&&isset($_POST['czwartePole'])&&isset($_POST['piatePole'])&&isset($_POST['szostePole'])&&isset($_POST['sortuj'])&&isset($_POST['wyszukaj'])&&isset($_POST['szukajTabela']))
 	{
 		$pierwszePole = $_POST['pierwszePole'];
 		$drugiePole   = $_POST['drugiePole'];
@@ -99,6 +112,8 @@ table, th, td {
 		$piatePole    = $_POST['piatePole'];
 		$szostePole   = $_POST['szostePole'];
 		$sortuj		  = $_POST['sortuj'];
+		$wyszukaj 	  = $_POST['wyszukaj'];
+		$szukajTabela = $_POST['szukajTabela'];
 	}
 	try
 	{
@@ -276,7 +291,7 @@ table, th, td {
 		
 		
 		
-		$sql = "SELECT KLI_ID, KLI_PUNKTY, DAN_IMIE, DAN_NAZWISKO, DAN_EMAIL, DAN_LOGIN FROM klient, dane WHERE klient.DAN_ID = dane.DAN_ID ORDER BY $sortuj";
+		$sql = "SELECT KLI_ID, KLI_PUNKTY, DAN_IMIE, DAN_NAZWISKO, DAN_EMAIL, DAN_LOGIN FROM klient, dane WHERE klient.DAN_ID = dane.DAN_ID AND $szukajTabela LIKE '%$wyszukaj%' ORDER BY $sortuj";
 		$result = $poloczenie->query($sql);
 
 		if ($result->num_rows > 0)
