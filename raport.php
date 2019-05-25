@@ -16,11 +16,15 @@
 <body>
 	
 <p>raporty</p>
-    	<a href="uzytkownicyRaport.php">użytkownicy</a>
+    <a href="uzytkownicyRaport.php">użytkownicy</a>
 	<br/><br/>
-	<a href="pracownicyRaport.php">Dodaj pracownika</a>
+		<a href="pracownicyRaport.php">Dodaj pracownika</a>
 	<br/><br/>
-
+	<a href="rezerwacjeRaporty.php">wykonane rezerwacje</a>
+	<br/><br/>
+		<a href="grafik.php">Ustal Grafik</a>
+	<br/><br/>
+	<a href="dodajKurs.php">dodaj kurs</a>
 	<br/><br/>
 	<a href="logout.php">wyloguj</a>
 	<br /><br />

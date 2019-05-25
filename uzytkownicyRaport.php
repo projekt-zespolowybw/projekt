@@ -23,6 +23,7 @@ table, th, td {
 		</select>
 		druga kolumna
 		<select name="drugiePole">
+		<option value=" ">brak</option>
 		<option value="DAN_IMIE">imie</option>
 		<option value="KLI_ID">id</option>
 		<option value="DAN_NAZWISKO">nazwisko</option>
@@ -32,6 +33,7 @@ table, th, td {
 		</select>
 		trzecia kolumna
 		<select name="trzeciePole">	
+		<option value=" ">brak</option>
 		<option value="DAN_NAZWISKO">nazwisko</option>
 		<option value="KLI_ID">id</option>
 		<option value="DAN_IMIE">imie</option>
@@ -41,6 +43,7 @@ table, th, td {
 		</select>
 		czwarta kolumna
 		<select name="czwartePole">
+		<option value=" ">brak</option>
 		<option value="DAN_LOGIN">login</option>
 		<option value="KLI_ID">id</option>
 		<option value="DAN_IMIE">imie</option>
@@ -50,6 +53,7 @@ table, th, td {
 		</select>
 		piąta kolumna
 		<select name="piatePole">
+		<option value=" ">brak</option>
 		<option value="DAN_EMAIL">email</option>
 		<option value="KLI_ID">id</option>
 		<option value="DAN_IMIE">imie</option>
@@ -59,6 +63,7 @@ table, th, td {
 		</select>
 		szósta kolumna
 		<select name="szostePole">
+		<option value=" ">brak</option>
 		<option value="KLI_PUNKTY">punkty</option>
 		<option value="KLI_ID">id</option>
 		<option value="DAN_IMIE">imie</option>
@@ -91,7 +96,26 @@ table, th, td {
 			die("connection failed: " . $poloczenie->connect_error);
 		} 
 		
-		
+		/*if ($_POST['drugiePole'] === " ") 
+		{
+		$_POST['drugiePole'] = null; // or 'NULL' for SQL
+		}
+		if ($_POST['trzeciePole'] === " ") 
+		{
+		$_POST['trzeciePole'] = null; // or 'NULL' for SQL
+		}
+		if ($_POST['czwartePole'] === " ") 
+		{
+		$_POST['czwartePole'] = null; // or 'NULL' for SQL
+		}
+		if ($_POST['piatePole'] === " ") 
+		{
+		$_POST['piatePole'] = null; // or 'NULL' for SQL
+		}
+		if ($_POST['szostePole'] === " ") 
+		{
+		$_POST['szostePole'] = null; // or 'NULL' for SQL
+		}*/
 			switch ($_POST['pierwszePole'])
 			{ 
 			case "KLI_ID":
@@ -112,6 +136,8 @@ table, th, td {
 			case "KLI_PUNKTY":
 				$pierwsze = "punkty";
 				break;
+			default:
+				$_POST['pierwszePole'] = null;
 			}
 				
 			switch ($_POST['drugiePole'])
@@ -134,6 +160,8 @@ table, th, td {
 			case "KLI_PUNKTY":
 				$drugie = "punkty";
 				break;
+			default:
+				$_POST['drugiePole'] = null;
 			}		
 			
 			switch ($_POST['trzeciePole'])
@@ -156,6 +184,8 @@ table, th, td {
 			case "KLI_PUNKTY":
 				$trzecie = "punkty";
 				break;
+			default:
+				$_POST['trzeciePole'] = null;
 			}
 					
 			switch ($_POST['czwartePole'])
@@ -178,6 +208,8 @@ table, th, td {
 			case "KLI_PUNKTY":
 				$czwarte = "punkty";
 				break;
+			default:
+				$_POST['czwartePole'] = null;
 			}
 			
 			switch ($_POST['piatePole'])
@@ -200,6 +232,8 @@ table, th, td {
 			case "KLI_PUNKTY":
 				$piate = "punkty";
 				break;
+			default:
+				$_POST['piatePole'] = null;
 			}
 			
 			switch ($_POST['szostePole'])
@@ -222,18 +256,71 @@ table, th, td {
 			case "KLI_PUNKTY":
 				$szoste = "punkty";
 				break;
+			default:
+				$_POST['szostePole'] = null;
 			}
-		$x = null;
+		//}
+		
+		
+		
 		$sql = "SELECT KLI_ID, KLI_PUNKTY, DAN_IMIE, DAN_NAZWISKO, DAN_EMAIL, DAN_LOGIN FROM klient, dane WHERE klient.DAN_ID = dane.DAN_ID";
 		$result = $poloczenie->query($sql);
 
 		if ($result->num_rows > 0)
 		{
-			echo "<table><tr><th>$pierwsze</th><th>$drugie</th><th>$trzecie</th><th>$czwarte</th><th>$piate</th><th>$szoste<tr>";
+			if($_POST['drugiePole'] != null && $_POST['trzeciePole'] != null && $_POST['czwartePole'] != null && $_POST['piatePole'] != null && $_POST['szostePole'] != null)
+			{
+				echo "<table><tr><th>$pierwsze</th><th>$drugie</th><th>$trzecie</th><th>$czwarte</th><th>$piate</th><th>$szoste<tr>";
+			}
+			elseif($_POST['drugiePole'] != null && $_POST['trzeciePole'] != null && $_POST['czwartePole'] != null && $_POST['piatePole'] != null && $_POST['szostePole'] == null)
+			{
+				echo "<table><tr><th>$pierwsze</th><th>$drugie</th><th>$trzecie</th><th>$czwarte</th><th>$piate<tr>";
+			}
+			elseif($_POST['drugiePole'] != null && $_POST['trzeciePole'] != null && $_POST['czwartePole'] != null && $_POST['piatePole'] == null && $_POST['szostePole'] == null)
+			{
+				echo "<table><tr><th>$pierwsze</th><th>$drugie</th><th>$trzecie</th><th>$czwarte<tr>";
+			}
+			elseif($_POST['drugiePole'] != null && $_POST['trzeciePole'] != null && $_POST['czwartePole'] == null && $_POST['piatePole'] == null && $_POST['szostePole'] == null)
+			{
+				echo "<table><tr><th>$pierwsze</th><th>$drugie</th><th>$trzecie<tr>";
+			}
+			elseif($_POST['drugiePole'] != null && $_POST['trzeciePole'] == null && $_POST['czwartePole'] == null && $_POST['piatePole'] == null && $_POST['szostePole'] == null)
+			{
+				echo "<table><tr><th>$pierwsze</th><th>$drugie<tr>";
+			}
+			elseif($_POST['drugiePole'] == null && $_POST['trzeciePole'] == null && $_POST['czwartePole'] == null && $_POST['piatePole'] == null && $_POST['szostePole'] == null)
+			{
+				echo "<table><tr><th>$pierwsze<tr>";
+			}
+			
 
 			while($row = $result->fetch_assoc())
 				{
-					echo "<tr><td>" .$row[$pierwszePole]. "</td><td>" . $row[$drugiePole]. "</td><td>" . $row[$trzeciePole]. "</td><td>" . $row[$czwartePole]. "</td><td>" . $row[$piatePole]. "</td><td>". $row[$szostePole]. "</td></tr>";
+					if($_POST['drugiePole'] != null && $_POST['trzeciePole'] != null && $_POST['czwartePole'] != null && $_POST['piatePole'] != null && $_POST['szostePole'] != null)
+					{
+						echo "<tr><td>" .$row[$pierwszePole]. "</td><td>" . $row[$drugiePole]. "</td><td>" . $row[$trzeciePole]. "</td><td>" . $row[$czwartePole]. "</td><td>" . $row[$piatePole]. "</td><td>". $row[$szostePole]. "</td></tr>";
+					}
+					elseif($_POST['drugiePole'] != null && $_POST['trzeciePole'] != null && $_POST['czwartePole'] != null && $_POST['piatePole'] != null && $_POST['szostePole'] == null)
+					{
+						echo "<tr><td>" .$row[$pierwszePole]. "</td><td>" . $row[$drugiePole]. "</td><td>" . $row[$trzeciePole]. "</td><td>" . $row[$czwartePole]. "</td><td>" . $row[$piatePole]. "</td></tr>";
+					}
+					elseif($_POST['drugiePole'] != null && $_POST['trzeciePole'] != null && $_POST['czwartePole'] != null && $_POST['piatePole'] == null && $_POST['szostePole'] == null)
+					{
+						echo "<tr><td>" .$row[$pierwszePole]. "</td><td>" . $row[$drugiePole]. "</td><td>" . $row[$trzeciePole]. "</td><td>" . $row[$czwartePole].  "</td></tr>";	
+					}
+					elseif($_POST['drugiePole'] != null && $_POST['trzeciePole'] != null && $_POST['czwartePole'] == null && $_POST['piatePole'] == null && $_POST['szostePole'] == null)
+					{
+						echo "<tr><td>" .$row[$pierwszePole]. "</td><td>" . $row[$drugiePole]. "</td><td>" . $row[$trzeciePole]. "</td></tr>";
+					}
+					elseif($_POST['drugiePole'] != null && $_POST['trzeciePole'] == null && $_POST['czwartePole'] == null && $_POST['piatePole'] == null && $_POST['szostePole'] == null)
+					{
+						echo "<tr><td>" .$row[$pierwszePole]. "</td><td>" . $row[$drugiePole]. "</td></tr>";
+					}
+					elseif($_POST['drugiePole'] == null && $_POST['trzeciePole'] == null && $_POST['czwartePole'] == null && $_POST['piatePole'] == null && $_POST['szostePole'] == null)
+					{
+						echo "<tr><td>" .$row[$pierwszePole] . "</td></tr>";
+					}
+
 				}
 			echo "</table>";
 		}
