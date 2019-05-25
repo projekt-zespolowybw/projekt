@@ -86,13 +86,12 @@ table, th, td {
 		wyszukiwanie po:
 		<br />
 		<select name="szukajTabela">
+		<option value="KLI_ID">id</option>
 		<option value="DAN_IMIE">imie</option>
 		<option value="DAN_NAZWISKO">nazwisko</option>
 		<option value="DAN_LOGIN">login</option>
 		<option value="DAN_EMAIL">email</option>
-		<option value="REZ_ID">id rezerwacji</option>
-		<option value="REZ_DATA">data rezerwacji</option>
-		<option value="REZ_CENA">cena rezerwacji</option>
+		<option value="KLI_PUNKTY">punkty</option>
 		</select>
 		<input type="text" name="wyszukaj"/>
 		<input type="submit" value="sortuj" />
