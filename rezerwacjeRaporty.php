@@ -10,10 +10,28 @@ table, th, td {
 </style>
 </head>
 <body>
+	<form method="post">
+		<select name="sortuj">
+		<option value="DAN_IMIE">imie</option>
+		<option value="DAN_NAZWISKO">nazwisko</option>
+		<option value="DAN_LOGIN">login</option>
+		<option value="DAN_EMAIL">email</option>
+		<option value="REZ_ID">id rezerwacji</option>
+		<option value="REZ_DATA">data rezerwacji</option>
+		<option value="REZ_CENA">cena rezerwacji</option>
+		</select>
+		<br />
+		
+		<input type="submit" value="sortuj" />
+	</form>
 
 <?php
    session_start();   
     require_once "connect.php";
+	if (isset($_POST['sortuj']))
+	{
+		$sortuj = $_POST['sortuj'];
+	}
 	try
 	{
 		$poloczenie = new mysqli($host, $db_user, $db_password, $db_name);
@@ -22,12 +40,9 @@ table, th, td {
 		{
 			die("connection failed: " . $poloczenie->connect_error);
 		} 
+
 		
-		
-		
-		
-		
-		$sql = "SELECT klient.KLI_ID, DAN_IMIE, DAN_NAZWISKO, DAN_EMAIL, DAN_LOGIN, REZ_ID, REZ_DATA, REZ_CENA FROM klient, dane, rezerwacje WHERE klient.DAN_ID = dane.DAN_ID AND klient.KLI_ID = rezerwacje.KLI_ID";
+		$sql = "SELECT klient.KLI_ID, DAN_IMIE, DAN_NAZWISKO, DAN_EMAIL, DAN_LOGIN, REZ_ID, REZ_DATA, REZ_CENA FROM klient, dane, rezerwacje WHERE klient.DAN_ID = dane.DAN_ID AND klient.KLI_ID = rezerwacje.KLI_ID ORDER BY $sortuj";
 		$result = $poloczenie->query($sql);
 
 		if ($result->num_rows > 0)

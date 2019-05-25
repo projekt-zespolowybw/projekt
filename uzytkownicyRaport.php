@@ -72,13 +72,25 @@ table, th, td {
 		<option value="DAN_EMAIL">email</option>
 		</select>
 		<br />
+		sortowanie
+		<br />
+		<select name="sortuj">
+		<option value="KLI_ID">id</option>
+		<option value="DAN_IMIE">imie</option>
+		<option value="DAN_NAZWISKO">nazwisko</option>
+		<option value="DAN_LOGIN">login</option>
+		<option value="DAN_EMAIL">email</option>
+		<option value="KLI_PUNKTY">punkty</option>
+		</select>
+		<br />
+		
 		<input type="submit" value="pokaż dane" />
 	</form>
 
 <?php
    session_start();   
     require_once "connect.php";
-	if (isset($_POST['pierwszePole'])&&isset($_POST['drugiePole'])&&isset($_POST['trzeciePole'])&&isset($_POST['czwartePole'])&&isset($_POST['piatePole'])&&isset($_POST['szostePole']))
+	if (isset($_POST['pierwszePole'])&&isset($_POST['drugiePole'])&&isset($_POST['trzeciePole'])&&isset($_POST['czwartePole'])&&isset($_POST['piatePole'])&&isset($_POST['szostePole'])&&isset($_POST['sortuj']))
 	{
 		$pierwszePole = $_POST['pierwszePole'];
 		$drugiePole   = $_POST['drugiePole'];
@@ -86,6 +98,7 @@ table, th, td {
 		$czwartePole  = $_POST['czwartePole'];
 		$piatePole    = $_POST['piatePole'];
 		$szostePole   = $_POST['szostePole'];
+		$sortuj		  = $_POST['sortuj'];
 	}
 	try
 	{
@@ -263,7 +276,7 @@ table, th, td {
 		
 		
 		
-		$sql = "SELECT KLI_ID, KLI_PUNKTY, DAN_IMIE, DAN_NAZWISKO, DAN_EMAIL, DAN_LOGIN FROM klient, dane WHERE klient.DAN_ID = dane.DAN_ID";
+		$sql = "SELECT KLI_ID, KLI_PUNKTY, DAN_IMIE, DAN_NAZWISKO, DAN_EMAIL, DAN_LOGIN FROM klient, dane WHERE klient.DAN_ID = dane.DAN_ID ORDER BY $sortuj";
 		$result = $poloczenie->query($sql);
 
 		if ($result->num_rows > 0)
