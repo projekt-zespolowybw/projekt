@@ -55,7 +55,11 @@
                             $polaczenie->query("INSERT INTO firma_transportowa.rezerwacje VALUES (NULL,'$aktualnaData','$iloscMiejsc'*15,'$klient','$kurs')");
                 
 					
-
+                    $polaczenie->query("UPDATE firma_transportowa.klient
+                    SET KLI_PUNKTY=KLI_PUNKTY+ '$iloscMiejsc'*5
+                    WHERE KLI_ID = '$klient' ");
+                
+                
 
                     				
 					

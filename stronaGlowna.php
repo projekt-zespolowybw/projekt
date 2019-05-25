@@ -18,6 +18,9 @@
     <a href="rezerwacja.php">zarezerwuj bilet</a>
 	<br /><br />
 	
+	<a href="wybierzNagrode.php">wybierz nagordę za punkty</a>
+	<br /><br />
+	
 	
 	<a href="logout.php">wyloguj</a>
 	<br /><br />

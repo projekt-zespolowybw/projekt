@@ -32,6 +32,13 @@
 	if(isset($_SESSION['blad']))	
 echo $_SESSION['blad'];
 ?>
+<br/><br/>
+
+Kontakt : <br/>
+ul. Jana Pawła II 37, 31-864 Kraków<br/>
+Telefon/fax: (070) 012-34-56, (070)-011-22-33
+
+
 
 </body>
 </html>
