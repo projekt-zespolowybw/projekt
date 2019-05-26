@@ -18,13 +18,13 @@
 <p>raporty</p>
     <a href="uzytkownicyRaport.php">użytkownicy</a>
 	<br/><br/>
-		<a href="pracownicyRaport.php">Dodaj pracownika</a>
+	<a href="kierowcyRaporty.php">rapory kierowcy</a>
 	<br/><br/>
-	<a href="rezerwacjeRaporty.php">wykonane rezerwacje</a>
+	<a href="pracownicyRaport.php">pracownicy raporty</a>
 	<br/><br/>
-		<a href="grafik.php">Ustal Grafik</a>
+	<a href="rezerwacjeRaporty.php">rezerwacje raporty</a>
 	<br/><br/>
-	<a href="dodajKurs.php">dodaj kurs</a>
+	<a href="grafik.php">Ustal Grafik</a>
 	<br/><br/>
 	<a href="logout.php">wyloguj</a>
 	<br /><br />

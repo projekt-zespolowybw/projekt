@@ -14,25 +14,25 @@ table, th, td
 	<form method="post">
 		sortowanie
 		<select name="sortuj">
-		<option value="DAN_IMIE">imie</option>
+		<option value="KIE_ID">id</option>
+		<option value="KIE_LICENCJA">licencja</option>
+		<option value="KIE_ILOSCKM">przejechane km</option>
+		<option value="DAN_IMIE">imię</option>
 		<option value="DAN_NAZWISKO">nazwisko</option>
 		<option value="DAN_LOGIN">login</option>
 		<option value="DAN_EMAIL">email</option>
-		<option value="REZ_ID">id rezerwacji</option>
-		<option value="REZ_DATA">data rezerwacji</option>
-		<option value="REZ_CENA">cena rezerwacji</option>
 		</select>
 		<br />
 		wyszukiwanie po:
 		<br />
 		<select name="szukajTabela">
-		<option value="DAN_IMIE">imie</option>
+		<option value="KIE_ID">id</option>
+		<option value="KIE_LICENCJA">licencja</option>
+		<option value="KIE_ILOSCKM">przejechane km</option>
+		<option value="DAN_IMIE">imię</option>
 		<option value="DAN_NAZWISKO">nazwisko</option>
 		<option value="DAN_LOGIN">login</option>
 		<option value="DAN_EMAIL">email</option>
-		<option value="REZ_ID">id rezerwacji</option>
-		<option value="REZ_DATA">data rezerwacji</option>
-		<option value="REZ_CENA">cena rezerwacji</option>
 		</select>
 		<input type="text" name="wyszukaj"/>
 		<input type="submit" value="sortuj" />
@@ -42,11 +42,6 @@ table, th, td
 <?php
    session_start();   
     require_once "connect.php";
-	
-	$sortuj = "REZ_ID";
-	$wyszukaj = " ";
-	$szukajTabela = "DAN_IMIE";
-	
 	if (isset($_POST['sortuj'])&&isset($_POST['wyszukaj'])&&isset($_POST['szukajTabela']))
 	{
 		$sortuj 		= $_POST['sortuj'];
@@ -63,19 +58,19 @@ table, th, td
 		} 
 
 		
-		$sql = "SELECT klient.KLI_ID, DAN_IMIE, DAN_NAZWISKO, DAN_EMAIL, DAN_LOGIN, REZ_ID, REZ_DATA, REZ_CENA FROM klient, dane, rezerwacje WHERE klient.DAN_ID = dane.DAN_ID AND klient.KLI_ID = rezerwacje.KLI_ID AND $szukajTabela LIKE '%$wyszukaj%' ORDER BY $sortuj";
+		$sql = "SELECT kierowca.KIE_ID, KIE_LICENCJA, KIE_ILOSCKM, pracownik.PRA_ID, DAN_IMIE, DAN_NAZWISKO, DAN_LOGIN, DAN_EMAIL FROM pracownik, dane, kierowca WHERE kierowca.PRA_ID = pracownik.PRA_ID AND pracownik.DAN_ID = dane.DAN_ID AND $szukajTabela LIKE '%$wyszukaj%' ORDER BY $sortuj";
 		$result = $poloczenie->query($sql);
 
 		if ($result->num_rows > 0)
 		{
 			
-				echo "<table><tr><th>data rezerwacji</th><th>id rezerwacji</th><th>cena rezerwacji</th><th>nazwisko klienta</th><th>imię klienta</th><th>email klienta<tr>";
+				echo "<table><tr><th>id</th><th>licencja</th><th>przejechane km</th><th>imię</th><th>nazwisko</th><th>login</th><th>email<tr>";
 		
 			
 
 			while($row = $result->fetch_assoc())
 				{
-						echo "<tr><td>" .$row["REZ_DATA"]. "</td><td>" . $row["REZ_ID"]. "</td><td>" . $row["REZ_CENA"]. "</td><td>" . $row["DAN_NAZWISKO"]. "</td><td>" . $row["DAN_IMIE"]. "</td><td>". $row["DAN_EMAIL"]. "</td></tr>";
+						echo "<tr><td>" .$row["KIE_ID"]. "</td><td>" . $row["KIE_LICENCJA"]. "</td><td>" . $row["KIE_ILOSCKM"]. "</td><td>" . $row["DAN_IMIE"]. "</td><td>" . $row["DAN_NAZWISKO"]. "</td><td>". $row["DAN_LOGIN"]. "</td><td>". $row["DAN_EMAIL"]. "</td></tr>";
 				}
 			echo "</table>";
 		}
