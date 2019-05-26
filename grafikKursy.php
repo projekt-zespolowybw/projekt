@@ -22,6 +22,7 @@ table, th, td
 		<option value="KUR_ODLEGLOSC">odległość w km</option>
 		<option value="KUR_CZAS">czas</option>
 		<option value="KIE_ID">id kierowcy</option>
+		<option value="POJ_ID">id pojazdu</option>
 		</select>
 		<br />
 		wyszukiwanie po:
@@ -35,6 +36,7 @@ table, th, td
 		<option value="KUR_ODLEGLOSC">odległość w km</option>
 		<option value="KUR_CZAS">czas</option>
 		<option value="KIE_ID">id kierowcy</option>
+		<option value="POJ_ID">id pojazdu</option>
 		</select>
 		<input type="text" name="wyszukaj"/>
 		<input type="submit" value="sortuj" />
@@ -60,19 +62,19 @@ table, th, td
 		} 
 
 		
-		$sql = "SELECT kurs.KUR_ID, KUR_POCZATEK, KUR_KONIEC, KUR_DATAPOCZ, KUR_DATAKONC, KUR_ODLEGLOSC, KUR_CZAS, kierowca.KIE_ID FROM kierowca, kurs WHERE kierowca.KIE_ID = kurs.KIE_ID AND $szukajTabela LIKE '%$wyszukaj%' ORDER BY $sortuj";
+		$sql = "SELECT kurs.KUR_ID, KUR_POCZATEK, KUR_KONIEC, KUR_DATAPOCZ, KUR_DATAKONC, KUR_ODLEGLOSC, KUR_CZAS, kierowca.KIE_ID POJ_ID FROM kierowca, kurs WHERE kierowca.KIE_ID = kurs.KIE_ID AND $szukajTabela LIKE '%$wyszukaj%' ORDER BY $sortuj";
 		$result = $poloczenie->query($sql);
 
 		if ($result->num_rows > 0)
 		{
 			
-				echo "<table><tr><th>id kursu</th><th>początek kursu</th><th>koniec</th><th>data roz</th><th>data zak</th><th>odległość w km</th><th>czas</th><th>id kierowcy<tr>";
+				echo "<table><tr><th>id kursu</th><th>początek kursu</th><th>koniec</th><th>data roz</th><th>data zak</th><th>odległość w km</th><th>czas</th><th>id kierowcy</th><th>pojazd id<tr>";
 		
 			
 
 			while($row = $result->fetch_assoc())
 				{
-						echo "<tr><td>" .$row["KUR_ID"]. "</td><td>" . $row["KUR_POCZATEK"]. "</td><td>" . $row["KUR_KONIEC"]. "</td><td>" . $row["KUR_DATAPOCZ"]. "</td><td>" . $row["KUR_DATAKONC"]. "</td><td>". $row["KUR_ODLEGLOSC"]. "</td><td>". $row["KUR_CZAS"]. "</td><td>". $row["KIE_ID"]. "</td></tr>";
+						echo "<tr><td>" .$row["KUR_ID"]. "</td><td>" . $row["KUR_POCZATEK"]. "</td><td>" . $row["KUR_KONIEC"]. "</td><td>" . $row["KUR_DATAPOCZ"]. "</td><td>" . $row["KUR_DATAKONC"]. "</td><td>". $row["KUR_ODLEGLOSC"]. "</td><td>". $row["KUR_CZAS"]. "</td><td>". $row["KIE_ID"]. "</td><td>". $row["POJ_ID"]."</td></tr>";
 				}
 			echo "</table>";
 		}
