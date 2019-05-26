@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<style>
+table, th, td 
+{
+    border: 1px solid black;
+}
+</style>
+</head>
+<body>
+
 <?php
 session_start();   
     require_once "connect.php";
@@ -26,16 +40,24 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
         
             $nowalinia="\r\n";
         
-        if ($rezultat->num_rows > 0) {
+        if ($rezultat->num_rows > 0) 
+		{
+			echo "<table><tr><th>id rezerwacji</th><th>data rezerwacji</th><th>cena</th><th>ilość miejsc</th></tr>";
             
-            while( $rezerwacje = $rezultat->fetch_assoc()) {
-                echo " id rezerwacji : ".$rezerwacje["REZ_ID"]. " Data rezerwacji : ".$rezerwacje["REZ_DATA"]. " Cena : ".$rezerwacje["REZ_CENA"]." ilość miejsc : ".$rezerwacje["REZ_CENA"]/15;}
-            
-                                    }
-        else {
-                echo " 0 wyników ";
-             }
+            while($rezerwacje = $rezultat->fetch_assoc())
+			{
+					echo "<tr><td>" . $rezerwacje["REZ_ID"] . "</td><td>" . $rezerwacje["REZ_DATA"] . "</td><td>" . $rezerwacje["REZ_CENA"]."</td><td>". $rezerwacje["REZ_CENA"]/15 . "</td></tr>";
+			}
+            echo "</table>";
+        }
+        else 
+		{
+            echo " 0 wyników ";
+        }
     }
     $polaczenie->close();
 
     ?>
+	
+</body>
+</html>
