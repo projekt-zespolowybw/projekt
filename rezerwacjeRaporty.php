@@ -4,7 +4,8 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <style>
-table, th, td {
+table, th, td
+{
     border: 1px solid black;
 }
 </style>
@@ -41,6 +42,11 @@ table, th, td {
 <?php
    session_start();   
     require_once "connect.php";
+	
+	$sortuj = "REZ_ID";
+	$wyszukaj = " ";
+	$szukajTabela = "DAN_IMIE";
+	
 	if (isset($_POST['sortuj'])&&isset($_POST['wyszukaj'])&&isset($_POST['szukajTabela']))
 	{
 		$sortuj 		= $_POST['sortuj'];
