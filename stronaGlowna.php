@@ -21,6 +21,10 @@
 	<a href="wybierzNagrode.php">wybierz nagordę za punkty</a>
 	<br /><br />
 	
+	<a href="wyswietlRezerwacje.php">wyświetl swoje rezerwacje</a>
+	<br /><br />
+	
+	
 	
 	<a href="logout.php">wyloguj</a>
 	<br /><br />

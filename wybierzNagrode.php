@@ -45,7 +45,7 @@ if ($polaczenie->connect_errno!=0)
 			{  if (isset($_POST['wyborNagrody1'])&&isset($_POST['wyborNagrody2'])) 
             
             {
-                if ($_POST['wyborNagrody1']=='darmowy przejazd - 100 pkt')
+                if ($_POST['wyborNagrody1']=='darmowy przejazd - 100 pkt' && $punkty>=100)
                 {
                                 
                     $polaczenie->query("UPDATE firma_transportowa.klient
@@ -59,7 +59,7 @@ if ($polaczenie->connect_errno!=0)
                 }
                 
                 
-                elseif ($_POST['wyborNagrody1']=='pluszowy miś - 200 pkt')
+                elseif ($_POST['wyborNagrody1']=='pluszowy miś - 200 pkt' && $punkty>=200)
                 {
                                 
                     $polaczenie->query("UPDATE firma_transportowa.klient
@@ -72,7 +72,7 @@ if ($polaczenie->connect_errno!=0)
                     
                 }
                 
-                 elseif ($_POST['wyborNagrody1']=='darmowy tygodniowy karnet - 300 pkt')
+                 elseif ($_POST['wyborNagrody1']=='darmowy tygodniowy karnet - 300 pkt'&& $punkty>=300)
                 {
                                 
                     $polaczenie->query("UPDATE firma_transportowa.klient
@@ -85,7 +85,7 @@ if ($polaczenie->connect_errno!=0)
                     
                 }
                 
-                 elseif ($_POST['wyborNagrody1']=='uścisk dłoni prezesa - 500 pkt')
+                 elseif ($_POST['wyborNagrody1']=='uścisk dłoni prezesa - 500 pkt'&& $punkty>=500)
                 {
                                 
                     $polaczenie->query("UPDATE firma_transportowa.klient
@@ -98,7 +98,7 @@ if ($polaczenie->connect_errno!=0)
                     
                 }
                 
-                 elseif ($_POST['wyborNagrody1']=='miesięczny karnet - 1000 pkt')
+                 elseif ($_POST['wyborNagrody1']=='miesięczny karnet - 1000 pkt' && $punkty>=1000)
                 {
                                 
                     $polaczenie->query("UPDATE firma_transportowa.klient
@@ -110,6 +110,8 @@ if ($polaczenie->connect_errno!=0)
                     
                     
                 }
+                
+               
             }
             }
                     
