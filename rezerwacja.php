@@ -1,8 +1,7 @@
 <?php
 				
    session_start();   
-    require_once "connect.php";
-
+    require_once "connect.php";                            
 
     echo "rezerwacja";
 	if (isset($_POST['iloscMiejsc']) && isset($_POST['godzinaOdjazdu']) && isset($_POST['przystanekPoczatkowy']) && isset($_POST['rezerwacja']))
@@ -124,23 +123,40 @@
 	<form method="post">
 	
 	
-				
-        
-		
-o której odjeżdzasz? :	
-		<select name="godzinaOdjazdu">
-		<option>2019-05-26 01:00:00</option>
-		<option>2019-05-30 10:00:00</option>
-        <option  selected disabled hidden></option>
-	    </select>
-		<br />
-
-skąd jedziesz? :	
+			skąd jedziesz? :	
 		<select name="przystanekPoczatkowy">
         <option  selected disabled hidden></option>
 		<option>Kraków</option>
 		<option>Katowice</option>
+	    </select>	
+        
+		
+o której odjeżdzasz? :	
+		<select name="godzinaOdjazdu">
+		<?
+            
+
+?>
+		
+		<option>2019-05-26 10:00:00</option>
+		<option>2019-05-26 14:00:00</option>
+        <option>2019-05-26 17:00:00</option>
+        <option>2019-05-27 10:00:00</option>
+        <option>2019-05-27 14:00:00</option>
+        <option>2019-05-27 17:00:00</option>
+        <option>2019-05-28 10:00:00</option>
+        <option>2019-05-28 14:00:00</option>
+        <option>2019-05-28 17:00:00</option>
+        <option>2019-05-29 10:00:00</option>
+        <option>2019-05-29 14:00:00</option>
+        <option>2019-05-29 17:00:00</option>
+       
+        
+        <option  selected disabled hidden></option>
 	    </select>
+		<br />
+
+
 	    
 	    <br />
 	    
