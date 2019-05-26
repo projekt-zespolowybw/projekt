@@ -62,7 +62,7 @@ table, th, td
 		} 
 
 		
-		$sql = "SELECT kurs.KUR_ID, KUR_POCZATEK, KUR_KONIEC, KUR_DATAPOCZ, KUR_DATAKONC, KUR_ODLEGLOSC, KUR_CZAS, kierowca.KIE_ID POJ_ID FROM kierowca, kurs WHERE kierowca.KIE_ID = kurs.KIE_ID AND $szukajTabela LIKE '%$wyszukaj%' ORDER BY $sortuj";
+		$sql = "SELECT kurs.KUR_ID, KUR_POCZATEK, KUR_KONIEC, KUR_DATAPOCZ, KUR_DATAKONC, KUR_ODLEGLOSC, KUR_CZAS, kierowca.KIE_ID, POJ_ID FROM kierowca, kurs WHERE kierowca.KIE_ID = kurs.KIE_ID AND $szukajTabela LIKE '%$wyszukaj%' ORDER BY $sortuj";
 		$result = $poloczenie->query($sql);
 
 		if ($result->num_rows > 0)

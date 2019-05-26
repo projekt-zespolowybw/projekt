@@ -33,8 +33,21 @@ else {$wszystko_OK=false;}
 				
 				if ($wszystko_OK==true)
 				{
+                    
+                    
+                    
+                     $rezultat = $polaczenie->query("SELECT KUR_ID FROM kurs");
+                        
+                    $ileKursow = $rezultat->num_rows;
+                    
+                    $resztamodulo= ($ileKursow%6)+1;
 					
-					if ($polaczenie->query("INSERT INTO firma_transportowa.kurs VALUES ( NULL, '$przystanekPoczatkowy','$przystanekKoncowy','$czasOdjazdu','$czasPrzyjazdu','$odleglosc' ,'$czasPrzyjazdu - $czasOdjazdu', 0 ,'$maxMiejsc')"))
+					if ($polaczenie->query("INSERT INTO firma_transportowa.kurs VALUES ( NULL, '$przystanekPoczatkowy','$przystanekKoncowy','$czasOdjazdu','$czasPrzyjazdu','$odleglosc' ,'$czasPrzyjazdu - $czasOdjazdu', 0 ,'$maxMiejsc','$resztamodulo','$resztamodulo')"))
+                        
+                       
+                    
+                    
+                    
 					{
 						echo "udało się dodać kurs";
 						header('Location: stronaGlownaAdmin.php');
