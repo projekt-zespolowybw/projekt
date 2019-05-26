@@ -20,7 +20,7 @@
 	<br/><br/>
 	<a href="kierowcyRaporty.php">rapory kierowcy</a>
 	<br/><br/>
-	<a href="pracownicyRaport.php">pracownicy raporty</a>
+	<a href="pracownicyRaporty.php">pracownicy raporty</a>
 	<br/><br/>
 	<a href="rezerwacjeRaporty.php">rezerwacje raporty</a>
 	<br/><br/>
