@@ -51,6 +51,19 @@
                             $idKursu = $rezultat->fetch_assoc();
                             $kurs = $idKursu['KUR_ID'];
                 
+                $rezultat3=$polaczenie->query("SELECT KUR_MAXMIEJSC  FROM firma_transportowa.kurs WHERE KUR_ID = '$kurs'");
+                
+                            $iloscMiejsc2 = $rezultat3->fetch_assoc();
+                            $maxMiejsca = $iloscMiejsc2['KUR_MAXMIEJSC'];
+                
+                $rezultat2=$polaczenie->query("SELECT KUR_ILOSCMIEJSC  FROM firma_transportowa.kurs WHERE KUR_ID = '$kurs'");
+                
+                            $iloscMiejsc1 = $rezultat2->fetch_assoc();
+                            $wolneMiejsca = $maxMiejsca -$iloscMiejsc1['KUR_ILOSCMIEJSC'];
+                
+                
+                
+                if($wolneMiejsca>=$iloscMiejsc){
 					
                             $polaczenie->query("INSERT INTO firma_transportowa.rezerwacje VALUES (NULL,'$aktualnaData','$iloscMiejsc'*15,'$klient','$kurs')");
                 
@@ -59,7 +72,16 @@
                     SET KLI_PUNKTY=KLI_PUNKTY+ '$iloscMiejsc'*5
                     WHERE KLI_ID = '$klient' ");
                 
+                    $polaczenie->query("UPDATE firma_transportowa.kurs
+                    SET KUR_ILOSCMIEJSC=KUR_ILOSCMIEJSC+'$iloscMiejsc'
+                    WHERE KUR_ID='$kurs'");
+                    
+                }
                 
+                else {
+                    
+                    echo "brak wolnych miejsc";
+                }
 
                     				
 					
@@ -108,7 +130,7 @@
 o której odjeżdzasz? :	
 		<select name="godzinaOdjazdu">
 		<option>2019-05-26 01:00:00</option>
-		<option>10:00</option>
+		<option>2019-05-30 10:00:00</option>
         <option  selected disabled hidden></option>
 	    </select>
 		<br />
