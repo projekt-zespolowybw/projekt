@@ -113,7 +113,14 @@
 
                         
                         $polaczenie->query("INSERT INTO firma_transportowa.pracownik VALUES (NULL,'$dzial',LAST_INSERT_ID())");
-                        $_SESSION['udanarejestracja']=true;
+                       
+                     if ($dzial='kierowca'){
+                        $polaczenie->query("INSERT INTO firma_transportowa.kierowca VALUES (NULL,'D',0,LAST_INSERT_ID())");
+                        
+                        
+                    }
+                    
+                    $_SESSION['udanarejestracja']=true;
                         header('Location: stronaGlownaAdmin.php');
                         
 					
