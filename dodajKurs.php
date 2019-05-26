@@ -4,8 +4,11 @@
     require_once "connect.php";
 
     
-    if (isset($_POST['przystanekPoczatkowy']) && isset($_POST['przystanekKoncowy']) && isset($_POST['czasOdjazdu']) && isset($_POST['czasPrzyjazdu']) && isset($_POST['odleglosc']))
+    if (isset($_POST['przystanekPoczatkowy']) && isset($_POST['przystanekKoncowy']) && isset($_POST['czasOdjazdu']) && isset($_POST['czasPrzyjazdu']) && isset($_POST['odleglosc'])&& isset($_POST['maxmiejsc']))
     {
+        
+        
+        
         $wszystko_OK=true;
         $przystanekPoczatkowy = $_POST['przystanekPoczatkowy'];
         
@@ -13,6 +16,7 @@
         $czasOdjazdu = $_POST['czasOdjazdu'];
         $czasPrzyjazdu = $_POST['czasPrzyjazdu'];
         $odleglosc = $_POST['odleglosc'];
+         $maxMiejsc = $_POST['maxmiejsc'];
     }
 else {$wszystko_OK=false;}
 
@@ -30,7 +34,7 @@ else {$wszystko_OK=false;}
 				if ($wszystko_OK==true)
 				{
 					
-					if ($polaczenie->query("INSERT INTO firma_transportowa.kurs VALUES (NULL, '$przystanekPoczatkowy','$przystanekKoncowy', '$czasOdjazdu','$czasPrzyjazdu','$odleglosc' , '$czasPrzyjazdu - $czasOdjazdu')"))
+					if ($polaczenie->query("INSERT INTO firma_transportowa.kurs VALUES ( NULL, '$przystanekPoczatkowy','$przystanekKoncowy','$czasOdjazdu','$czasPrzyjazdu','$odleglosc' ,'$czasPrzyjazdu - $czasOdjazdu', 0 ,'$maxMiejsc')"))
 					{
 						echo "udało się dodać kurs";
 						header('Location: stronaGlownaAdmin.php');
@@ -41,8 +45,17 @@ else {$wszystko_OK=false;}
 					}
 					
 				}
-				
+                
+                $przystanekPoczatkowy = NULL;
+                $przystanekKoncowy = NULL;
+                $czasOdjazdu = NULL;
+                $czasPrzyjazdu = NULL;
+                $odleglosc = NULL;
+                $maxMiejsc =NULL;
+		  		
 				$polaczenie->close();
+                
+        
 			}
 			
 		}
@@ -89,6 +102,9 @@ else {$wszystko_OK=false;}
 		
 
 		odległośc: <br /> <input type="number" name="odleglosc" /><br />
+		
+        maksymalna ilosc miejsc: <br /> <input type="number" name="maxmiejsc" /><br />
+
 		
 		
 		
