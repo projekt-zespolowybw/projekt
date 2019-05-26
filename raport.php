@@ -24,7 +24,7 @@
 	<br/><br/>
 	<a href="rezerwacjeRaporty.php">rezerwacje raporty</a>
 	<br/><br/>
-	<a href="grafik.php">Ustal Grafik</a>
+	<a href="grafikKursy.php">grafik kursów</a>
 	<br/><br/>
 	<a href="logout.php">wyloguj</a>
 	<br /><br />
