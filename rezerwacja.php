@@ -3,7 +3,6 @@
    session_start();   
     require_once "connect.php";                            
 
-    echo "rezerwacja";
 	if (isset($_POST['iloscMiejsc']) && isset($_POST['godzinaOdjazdu']) && isset($_POST['przystanekPoczatkowy']) && isset($_POST['rezerwacja']))
     {   
         
@@ -112,6 +111,7 @@
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
+	<link rel="stylesheet" type="text/css" href="wyglad.css" />
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>busy - rezerwacja </title>
@@ -119,68 +119,82 @@
 </head>
 
 <body>
-	
-	<form method="post">
+	<div id="strona">
+		<div id="naglowek">
+			Strona glowna
+		</div>
+		<div id="menu">
+			<div class="opcja"> <a href="rezerwacja.php">Rezerwacja</a> </div>
+			<div class="opcja"> <a href="grafikKursyKlient.php">Kursy</a> </div>
+			<div class="opcja"><a href="wybierzNagrode.php">Program lojalnosciowy</a></div>
+			<div class="opcja"><a href="logout.php">wyloguj</a></div>
+			<div style="clear:both;"></div>
+		</div>
+		<div id="tabela">
+			<br /><br />
+			<form method="post">
 	
 	
 			skąd jedziesz? :	
-		<select name="przystanekPoczatkowy">
-        <option  selected disabled hidden></option>
-		<option>Kraków</option>
-		<option>Katowice</option>
-	    </select>	
-        
-		
-o której odjeżdzasz? :	
-		<select name="godzinaOdjazdu">
-		<?
-            
+			<select name="przystanekPoczatkowy">
+			<option  selected disabled hidden></option>
+			<option>Kraków</option>
+			<option>Katowice</option>
+			</select>	
+			
+			
+			o której odjeżdzasz? :	
+			<select name="godzinaOdjazdu">
+			<?
+				
 
-?>
-		
-		<option>2019-05-26 10:00:00</option>
-		<option>2019-05-26 14:00:00</option>
-        <option>2019-05-26 17:00:00</option>
-        <option>2019-05-27 10:00:00</option>
-        <option>2019-05-27 14:00:00</option>
-        <option>2019-05-27 17:00:00</option>
-        <option>2019-05-28 10:00:00</option>
-        <option>2019-05-28 14:00:00</option>
-        <option>2019-05-28 17:00:00</option>
-        <option>2019-05-29 10:00:00</option>
-        <option>2019-05-29 14:00:00</option>
-        <option>2019-05-29 17:00:00</option>
-       
-        
-        <option  selected disabled hidden></option>
-	    </select>
-		<br />
+			?>
+			
+			<option>2019-05-26 10:00:00</option>
+			<option>2019-05-26 14:00:00</option>
+			<option>2019-05-26 17:00:00</option>
+			<option>2019-05-27 10:00:00</option>
+			<option>2019-05-27 14:00:00</option>
+			<option>2019-05-27 17:00:00</option>
+			<option>2019-05-28 10:00:00</option>
+			<option>2019-05-28 14:00:00</option>
+			<option>2019-05-28 17:00:00</option>
+			<option>2019-05-29 10:00:00</option>
+			<option>2019-05-29 14:00:00</option>
+			<option>2019-05-29 17:00:00</option>
+		   
+			
+			<option  selected disabled hidden></option>
+			</select>
+			<br />
 
 
-	    
-	    <br />
-	    
-	    ilość miejsc :	
-		<select name="iloscMiejsc" >
-		<option  selected disabled hidden></option>
-		<option>1</option>
-		<option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-        <option>10</option>
-    
-	    </select>
-		<br />
+			
+			<br />
+			
+			ilość miejsc :	
+			<select name="iloscMiejsc" >
+			<option  selected disabled hidden></option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+			<option>6</option>
+			<option>7</option>
+			<option>8</option>
+			<option>9</option>
+			<option>10</option>
 		
-		
-		<input type="submit" value="rezerwuj" name="rezerwacja" />
-		
-	</form>
-
+			</select>
+			<br />
+			
+			
+			<input type="submit" value="rezerwuj" name="rezerwacja" />
+			
+			</form>
+			<br /><br />
+		</div>
+	</div>
 </body>
 </html>

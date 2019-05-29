@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+	<link rel="stylesheet" type="text/css" href="wyglad.css" />
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <style>
@@ -11,6 +12,11 @@ table, th, td
 </style>
 </head>
 <body>
+	<div id="naglowek">
+		Raporty pracownikow
+		</div>
+	<div id="tabela">
+		<br /><br />
 	<form method="post">
 		sortowanie
 		<select name="sortuj">
@@ -89,7 +95,7 @@ table, th, td
 
 
 ?> 
-
-
+<br /><br />
+</div>
 </body>
 </html>

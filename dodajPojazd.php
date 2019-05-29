@@ -59,6 +59,7 @@ else {$wszystko_OK=false;}
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
+	<link rel="stylesheet" type="text/css" href="wyglad.css" />
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>busy - dodawanie pojazdu</title>
@@ -74,36 +75,55 @@ else {$wszystko_OK=false;}
 </head>
 
 <body>
+	<div id="strona">
+		<div id="naglowek">
+			Panel administratora
+		</div>
+		<div id="menu">
+			<div class="opcja"> <a href="dodajPojazd.php">Dodaj pojazd</a> </div>
+			<div class="opcja"> <a href="dodajKursAdmin.php">Dodaj kurs</a> </div>
+			<div class="opcja"> <a href="grafikKursyAdmin.php">Kursy</a> </div>
+			<div class="opcja"> <a href="dodajPracownika.php">Dodaj pracownika</a> </div>
+			<div class="opcja"> <a href="kierowcyRaportyAdmin.php">Raporty kierowcow</a> </div>
+			<div class="opcja"><a href="raportAdmin.php">Generuj raport</a></div>
+			<div class="opcja"><a href="grafikAdmin.php">Ustal Grafik</a></div>
+			<div class="opcja"><a href="logout.php">wyloguj</a></div>
+			<div style="clear:both;"></div>
+		</div>	
 	
-	<form method="post">
+		<div id="tabela">
+		<br /><br />
+		<form method="post">
 	
-		Marka Pojazdu: <br /> <input type="text" name="markaPojazdu" /><br />
-		
-		Model Pojazdu: <br /> <input type="text" name="modelPojazdu" /><br />
-				
-        Rejestracja: <br /> <input type="text" maxlength="7" name="rejestracja" /><br />
-		
-		
-		Data Produkcji: <br /> <input type="date" name="dataProdukcji" /><br />
-		
+			Marka Pojazdu: <br /> <input type="text" name="markaPojazdu" /><br />
+			
+			Model Pojazdu: <br /> <input type="text" name="modelPojazdu" /><br />
+					
+			Rejestracja: <br /> <input type="text" maxlength="7" name="rejestracja" /><br />
+			
+			
+			Data Produkcji: <br /> <input type="date" name="dataProdukcji" /><br />
+			
 
-		Data przegladu: <br /> <input type="date" name="dataPrzegladu" /><br />
-		
-		
-		<?php
-			if (isset($_SESSION['e_regulamin']))
-			{
-				echo '<div class="error">'.$_SESSION['e_regulamin'].'</div>';
-				unset($_SESSION['e_regulamin']);
-			}
-		?>	
+			Data przegladu: <br /> <input type="date" name="dataPrzegladu" /><br />
+			
+			
+			<?php
+				if (isset($_SESSION['e_regulamin']))
+				{
+					echo '<div class="error">'.$_SESSION['e_regulamin'].'</div>';
+					unset($_SESSION['e_regulamin']);
+				}
+			?>	
 
 		
-		<br />
+			<br />
 		
-		<input type="submit" value="Zarejestruj się" />
+			<input type="submit" value="Zarejestruj się" />
 		
-	</form>
-
+			</form>
+			<br /><br />
+		</div>
+	</div>
 </body>
 </html>

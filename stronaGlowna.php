@@ -9,27 +9,24 @@
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
+	<link rel="stylesheet" type="text/css" href="wyglad.css" />
 	<meta charset="utf-8" />
-	<title>Witaj na stronie głownej , udało Ci się zalogować</title>
+	<title>Busy-strona glowna</title>
 </head>
 
 <body>
 	
-    <a href="rezerwacja.php">zarezerwuj bilet</a>
-	<br /><br />
-	
-	<a href="wybierzNagrode.php">wybierz nagordę za punkty</a>
-	<br /><br />
-	
-	<a href="wyswietlRezerwacje.php">wyświetl swoje rezerwacje</a>
-	<br /><br />
-	
-	
-	
-	<a href="logout.php">wyloguj</a>
-	<br /><br />
-	
-	
-
+	<div id="strona">
+		<div id="naglowek">
+			Strona glowna
+		</div>
+		<div id="menu">
+			<div class="opcja"> <a href="rezerwacja.php">Rezerwacja</a> </div>
+			<div class="opcja"> <a href="grafikKursyKlient.php">Kursy</a> </div>
+			<div class="opcja"><a href="wybierzNagrode.php">Program lojalnosciowy</a></div>
+			<div class="opcja"><a href="logout.php">wyloguj</a></div>
+			<div style="clear:both;"></div>
+		</div>
+	</div>
 </body>
 </html>
