@@ -86,6 +86,7 @@ else {$wszystko_OK=false;}
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
+	<link rel="stylesheet" type="text/css" href="wyglad.css" />
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>busy - dodawanie pojazdu</title>
@@ -101,6 +102,22 @@ else {$wszystko_OK=false;}
 </head>
 
 <body>
+
+	<div id="strona">
+		<div id="naglowek">
+			Panel administratora
+		</div>
+		<div id="menu">
+		<div class="opcja"><a href="dodajPojazd.php">Dodaj pojazd</a></div>
+		<div class="opcja"><a href="dodajPracownika.php">Dodaj pracownika</a></div>
+		<div class="opcja"><a href="dodajKurs.php">Dodaj kurs</a></div>
+		<div class="opcja"><a href="raport.php">Generuj raport</a></div>
+		<div class="opcja"><a href="grafik.php">Ustal Grafik</a></div>
+		<div class="opcja"><a href="grafikKursy.php">Grafik kursów</a></div>
+		<div class="opcja"><a href="logout.php">wyloguj</a></div>
+		<div style="clear:both;"></div>
+		</div>
+		<div id="tabela">
 	
 	<form method="post">
 	
@@ -126,6 +143,9 @@ else {$wszystko_OK=false;}
 		<input type="submit" value="Dodaj przejazd" />
 		
 	</form>
+
+		</div>
+	</div>
 
 </body>
 </html>

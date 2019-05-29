@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+	<link rel="stylesheet" type="text/css" href="wyglad.css" />
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <style>
@@ -11,6 +12,23 @@ table, th, td
 </style>
 </head>
 <body>
+
+	<div id="strona">
+		<div id="naglowek">
+			Panel administratora
+		</div>
+		<div id="menu">
+		<div class="opcja"><a href="dodajPojazd.php">Dodaj pojazd</a></div>
+		<div class="opcja"><a href="dodajPracownika.php">Dodaj pracownika</a></div>
+		<div class="opcja"><a href="dodajKurs.php">Dodaj kurs</a></div>
+		<div class="opcja"><a href="raport.php">Generuj raport</a></div>
+		<div class="opcja"><a href="grafik.php">Ustal Grafik</a></div>
+		<div class="opcja"><a href="grafikKursy.php">Grafik kursów</a></div>
+		<div class="opcja"><a href="logout.php">wyloguj</a></div>
+		<div style="clear:both;"></div>
+		</div>
+		<div id="tabela">
+
 	<form method="post">
 		sortowanie
 		<select name="sortuj">
@@ -20,6 +38,7 @@ table, th, td
 		<option value="KUR_DATAPOCZ">data roz</option>
 		<option value="KUR_DATAKONC">data zak</option>
 		<option value="KUR_ODLEGLOSC">odległość w km</option>
+		<option value="KUR_CZAS">czas</option>
 		<option value="KIE_ID">id kierowcy</option>
 		<option value="POJ_ID">id pojazdu</option>
 		</select>
@@ -33,6 +52,7 @@ table, th, td
 		<option value="KUR_DATAPOCZ">data roz</option>
 		<option value="KUR_DATAKONC">data zak</option>
 		<option value="KUR_ODLEGLOSC">odległość w km</option>
+		<option value="KUR_CZAS">czas</option>
 		<option value="KIE_ID">id kierowcy</option>
 		<option value="POJ_ID">id pojazdu</option>
 		</select>
@@ -60,19 +80,19 @@ table, th, td
 		} 
 
 		
-		$sql = "SELECT kurs.KUR_ID, KUR_POCZATEK, KUR_KONIEC, KUR_DATAPOCZ, KUR_DATAKONC, KUR_ODLEGLOSC, kierowca.KIE_ID, POJ_ID FROM kierowca, kurs WHERE kierowca.KIE_ID = kurs.KIE_ID AND $szukajTabela LIKE '%$wyszukaj%' ORDER BY $sortuj";
+		$sql = "SELECT kurs.KUR_ID, KUR_POCZATEK, KUR_KONIEC, KUR_DATAPOCZ, KUR_DATAKONC, KUR_ODLEGLOSC, KUR_CZAS, kierowca.KIE_ID, POJ_ID FROM kierowca, kurs WHERE kierowca.KIE_ID = kurs.KIE_ID AND $szukajTabela LIKE '%$wyszukaj%' ORDER BY $sortuj";
 		$result = $poloczenie->query($sql);
 
 		if ($result->num_rows > 0)
 		{
 			
-				echo "<table><tr><th>id kursu</th><th>początek kursu</th><th>koniec</th><th>data roz</th><th>data zak</th><th>odległość w km</th><th>id kierowcy</th><th>pojazd id<tr>";
+				echo "<table><tr><th>id kursu</th><th>początek kursu</th><th>koniec</th><th>data roz</th><th>data zak</th><th>odległość w km</th><th>czas</th><th>id kierowcy</th><th>pojazd id<tr>";
 		
 			
 
 			while($row = $result->fetch_assoc())
 				{
-						echo "<tr><td>" .$row["KUR_ID"]. "</td><td>" . $row["KUR_POCZATEK"]. "</td><td>" . $row["KUR_KONIEC"]. "</td><td>" . $row["KUR_DATAPOCZ"]. "</td><td>" . $row["KUR_DATAKONC"]. "</td><td>". $row["KUR_ODLEGLOSC"]. "</td><td>". $row["KIE_ID"]. "</td><td>". $row["POJ_ID"]."</td></tr>";
+						echo "<tr><td>" .$row["KUR_ID"]. "</td><td>" . $row["KUR_POCZATEK"]. "</td><td>" . $row["KUR_KONIEC"]. "</td><td>" . $row["KUR_DATAPOCZ"]. "</td><td>" . $row["KUR_DATAKONC"]. "</td><td>". $row["KUR_ODLEGLOSC"]. "</td><td>". $row["KUR_CZAS"]. "</td><td>". $row["KIE_ID"]. "</td><td>". $row["POJ_ID"]."</td></tr>";
 				}
 			echo "</table>";
 		}
@@ -90,6 +110,9 @@ table, th, td
 
 ?> 
 
+
+		</div>
+	</div>
 
 </body>
 </html>

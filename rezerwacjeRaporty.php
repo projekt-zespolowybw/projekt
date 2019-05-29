@@ -12,11 +12,21 @@ table, th, td
 </style>
 </head>
 <body>
-	<div id="naglowek">
-		Raporty rezerwacji
+
+	<div id="strona">
+		<div id="naglowek">
+			Generuj raport
 		</div>
-	<div id="tabela">
-		<br /><br />
+		<div id="menu">
+		<div class="opcja"><a href="uzytkownicyRaport.php">użytkownicy</a></div>
+		<div class="opcja"><a href="kierowcyRaporty.php">rapory kierowcy</a></div>
+		<div class="opcja"><a href="pracownicyRaporty.php">pracownicy raporty</a></div>
+		<div class="opcja"><a href="rezerwacjeRaporty.php">rezerwacje raporty</a></div>
+		<div class="opcja"><a href="stronaGlownaAdmin.php">powrot</a></div>
+		<div style="clear:both;"></div>	
+		</div>
+		<div id="tabela">
+
 	<form method="post">
 		sortowanie
 		<select name="sortuj">
@@ -98,7 +108,9 @@ table, th, td
 
 
 ?> 
-<br /><br />
-</div>
+
+		</div>
+	</div>
+
 </body>
 </html>

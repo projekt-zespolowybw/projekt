@@ -9,26 +9,24 @@
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
+	<link rel="stylesheet" type="text/css" href="wyglad.css" />
 	<meta charset="utf-8" />
 	<title>raporty</title>
 </head>
 
 <body>
-	
-<p>raporty</p>
-    <a href="uzytkownicyRaport.php">użytkownicy</a>
-	<br/><br/>
-	<a href="kierowcyRaporty.php">rapory kierowcy</a>
-	<br/><br/>
-	<a href="pracownicyRaporty.php">pracownicy raporty</a>
-	<br/><br/>
-	<a href="rezerwacjeRaporty.php">rezerwacje raporty</a>
-	<br/><br/>
-	<a href="grafikKursy.php">grafik kursów</a>
-	<br/><br/>
-	<a href="logout.php">wyloguj</a>
-	<br /><br />
-	
-
+	<div id="strona">
+		<div id="naglowek">
+			Generuj raport
+		</div>
+		<div id="menu">
+		<div class="opcja"><a href="uzytkownicyRaport.php">użytkownicy</a></div>
+		<div class="opcja"><a href="kierowcyRaporty.php">rapory kierowcy</a></div>
+		<div class="opcja"><a href="pracownicyRaporty.php">pracownicy raporty</a></div>
+		<div class="opcja"><a href="rezerwacjeRaporty.php">rezerwacje raporty</a></div>
+		<div class="opcja"><a href="stronaGlownaAdmin.php">powrot</a></div>
+		<div style="clear:both;"></div>	
+		</div>
+	</div>
 </body>
 </html>
