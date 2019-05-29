@@ -3,6 +3,7 @@
    session_start();   
     require_once "connect.php";                            
 
+    
 	if (isset($_POST['iloscMiejsc']) && isset($_POST['godzinaOdjazdu']) && isset($_POST['przystanekPoczatkowy']) && isset($_POST['rezerwacja']))
     {   
         
@@ -119,83 +120,81 @@
 </head>
 
 <body>
-	<div id="strona">
+	<div id="strona">	
 		<div id="naglowek">
 			Strona glowna
 		</div>
 		<div id="menu">
-			<div class="opcja"> <a href="rezerwacja.php">Rezerwacja</a> </div>
-			<div class="opcja"> <a href="wyswietlRezerwacje.php">Wyswietl rezerwacje</a> </div>
-			<div class="opcja"> <a href="grafikKursyKlient.php">Kursy</a> </div>
-			<div class="opcja"><a href="wybierzNagrode.php">Program lojalnosciowy</a></div>
-			<div class="opcja"><a href="logout.php">wyloguj</a></div>
-			<div style="clear:both;"></div>
+		<div class="opcja"><a href="rezerwacja.php">Zarezerwuj bilet</a></div>
+		<div class="opcja"><a href="wybierzNagrode.php">Wybierz nagordę za punkty</a></div>
+		<div class="opcja"><a href="wyswietlRezerwacje.php">Wyświetl swoje rezerwacje</a></div>
+		<div class="opcja"><a href="logout.php">wyloguj</a></div>
+		<div style="clear:both;"></div>
 		</div>
 		<div id="tabela">
-			<br /><br />
-			<form method="post">
+	
+	<form method="post">
 	
 	
 			skąd jedziesz? :	
-			<select name="przystanekPoczatkowy">
-			<option  selected disabled hidden></option>
-			<option>Kraków</option>
-			<option>Katowice</option>
-			</select>	
-			
-			
-			o której odjeżdzasz? :	
-			<select name="godzinaOdjazdu">
-			<?
-				
-
-			?>
-			
-			<option>2019-05-26 10:00:00</option>
-			<option>2019-05-26 14:00:00</option>
-			<option>2019-05-26 17:00:00</option>
-			<option>2019-05-27 10:00:00</option>
-			<option>2019-05-27 14:00:00</option>
-			<option>2019-05-27 17:00:00</option>
-			<option>2019-05-28 10:00:00</option>
-			<option>2019-05-28 14:00:00</option>
-			<option>2019-05-28 17:00:00</option>
-			<option>2019-05-29 10:00:00</option>
-			<option>2019-05-29 14:00:00</option>
-			<option>2019-05-29 17:00:00</option>
-		   
-			
-			<option  selected disabled hidden></option>
-			</select>
-			<br />
-
-
-			
-			<br />
-			
-			ilość miejsc :	
-			<select name="iloscMiejsc" >
-			<option  selected disabled hidden></option>
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-			<option>4</option>
-			<option>5</option>
-			<option>6</option>
-			<option>7</option>
-			<option>8</option>
-			<option>9</option>
-			<option>10</option>
+		<select name="przystanekPoczatkowy">
+        <option  selected disabled hidden></option>
+		<option>Kraków</option>
+		<option>Katowice</option>
+	    </select>	
+        
 		
-			</select>
-			<br />
-			
-			
-			<input type="submit" value="rezerwuj" name="rezerwacja" />
-			
-			</form>
-			<br /><br />
-		</div>
+o której odjeżdzasz? :	
+		<select name="godzinaOdjazdu">
+		<?
+            
+
+?>
+		
+		<option>2019-05-26 10:00:00</option>
+		<option>2019-05-26 14:00:00</option>
+        <option>2019-05-26 17:00:00</option>
+        <option>2019-05-27 10:00:00</option>
+        <option>2019-05-27 14:00:00</option>
+        <option>2019-05-27 17:00:00</option>
+        <option>2019-05-28 10:00:00</option>
+        <option>2019-05-28 14:00:00</option>
+        <option>2019-05-28 17:00:00</option>
+        <option>2019-05-29 10:00:00</option>
+        <option>2019-05-29 14:00:00</option>
+        <option>2019-05-29 17:00:00</option>
+       
+        
+        <option  selected disabled hidden></option>
+	    </select>
+		<br />
+
+
+	    
+	    <br />
+	    
+	    ilość miejsc :	
+		<select name="iloscMiejsc" >
+		<option  selected disabled hidden></option>
+		<option>1</option>
+		<option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+    
+	    </select>
+		<br />
+		
+		
+		<input type="submit" value="rezerwuj" name="rezerwacja" />
+		
+	</form>
+	</div>
 	</div>
 </body>
 </html>

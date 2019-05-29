@@ -12,20 +12,18 @@ table, th, td
 </style>
 </head>
 <body>
-	<div id="strona">
+	<div id="strona">	
 		<div id="naglowek">
 			Strona glowna
 		</div>
 		<div id="menu">
-			<div class="opcja"> <a href="rezerwacja.php">Rezerwacja</a> </div>
-			<div class="opcja"> <a href="wyswietlRezerwacje.php">Wyswietl rezerwacje</a> </div>
-			<div class="opcja"> <a href="grafikKursyKlient.php">Kursy</a> </div>
-			<div class="opcja"><a href="wybierzNagrode.php">Program lojalnosciowy</a></div>
-			<div class="opcja"><a href="logout.php">wyloguj</a></div>
-			<div style="clear:both;"></div>
+		<div class="opcja"><a href="rezerwacja.php">Zarezerwuj bilet</a></div>
+		<div class="opcja"><a href="wybierzNagrode.php">Wybierz nagordę za punkty</a></div>
+		<div class="opcja"><a href="wyswietlRezerwacje.php">Wyświetl swoje rezerwacje</a></div>
+		<div class="opcja"><a href="logout.php">wyloguj</a></div>
+		<div style="clear:both;"></div>
 		</div>
 		<div id="tabela">
-		<br /><br />
 
 <?php
 session_start();   
@@ -73,9 +71,7 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
     $polaczenie->close();
 
     ?>
-
-		<br /><br />
 		</div>
-	</div>
+		</div>
 </body>
 </html>
