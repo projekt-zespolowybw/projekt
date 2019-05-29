@@ -33,7 +33,6 @@ $idKlienta=$_SESSION['id'] ;
                 
                 
             }
-    echo "wybór nagrody";
 
 
 if ($polaczenie->connect_errno!=0)
@@ -122,6 +121,7 @@ if ($polaczenie->connect_errno!=0)
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
+	<link rel="stylesheet" type="text/css" href="wyglad.css" />
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>busy - rezerwacja </title>
@@ -129,33 +129,48 @@ if ($polaczenie->connect_errno!=0)
 </head>
 
 <body>
-	
-	<form method="post">
-	
-	
-twoje punkty : 		<?php echo $punkty; ?>	
-       <br/>	
-        
+	<div id="strona">
+		<div id="naglowek">
+			Strona glowna
+		</div>
+		<div id="menu">
+			<div class="opcja"> <a href="rezerwacja.php">Rezerwacja</a> </div>
+			<div class="opcja"> <a href="wyswietlRezerwacje.php">Wyswietl rezerwacje</a> </div>
+			<div class="opcja"> <a href="grafikKursyKlient.php">Kursy</a> </div>
+			<div class="opcja"><a href="wybierzNagrode.php">Program lojalnosciowy</a></div>
+			<div class="opcja"><a href="logout.php">wyloguj</a></div>
+			<div style="clear:both;"></div>
+		</div>
+		<div id="tabela">
+			<br /><br />
+			<form method="post">
 		
-wybierz nagrodę : 
-		<select name="wyborNagrody1">
-
-        <option>darmowy przejazd - 100 pkt</option>
-		<option>pluszowy miś - 200 pkt</option>
-		<option>darmowy tygodniowy karnet - 300 pkt</option>
-       	<option>uścisk dłoni prezesa - 500 pkt</option>
-       	<option>miesięczny karnet - 1000 pkt</option>
-
-
-        <option  selected disabled hidden></option>
-	    </select>
-		<br />
-
-
 		
-		<input type="submit" value="wybierz" name="wyborNagrody2" />
-		
-	</form>
+			twoje punkty :	<?php echo $punkty; ?>	
+		   <br/>	
+			
+			
+			wybierz nagrodę : 
+			<select name="wyborNagrody1">
 
+			<option>darmowy przejazd - 100 pkt</option>
+			<option>pluszowy miś - 200 pkt</option>
+			<option>darmowy tygodniowy karnet - 300 pkt</option>
+			<option>uścisk dłoni prezesa - 500 pkt</option>
+			<option>miesięczny karnet - 1000 pkt</option>
+
+
+			<option  selected disabled hidden></option>
+			</select>
+			<br />
+
+
+			
+			<input type="submit" value="wybierz" name="wyborNagrody2" />
+			
+		</form>
+		<br /><br />
+		</div>
+	</div>
 </body>
 </html>
