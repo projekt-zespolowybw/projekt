@@ -11,24 +11,23 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="wyglad.css" />
 	<meta charset="utf-8" />
-	<title></title>
+	<title>Strona pracownika</title>
 </head>
 
 <body>
+	
 	<div id="strona">
 		<div id="naglowek">
-		Panel pracownika
+			Panel Pracownika
 		</div>
 		<div id="menu">
-
-			<div class="opcja"> <a href="dodajKursPracownik.php">Dodaj kurs</a> </div>
-			<div class="opcja"> <a href="grafikKursyPracownik.php">Kursy</a> </div>
-			<div class="opcja"> <a href="kierowcyRaportyPracownik.php">Raporty kierowcow</a> </div>
-			<div class="opcja"><a href="raportPracownik.php">Generuj raport</a></div>
-			<div class="opcja"><a href="grafikPracownik.php">Ustal Grafik</a></div>
-			<div class="opcja"><a href="logout.php">wyloguj</a></div>
-			<div style="clear:both;"></div>
-		</div>	
+		<div class="opcja"><a href="rezerwacjeRaportyP.php">Generuj raport</a></div>
+		<div class="opcja"><a href="grafik.php">Ustal Grafik</a></div>
+		<div class="opcja"><a href="dodajKurs.php">dodaj kurs</a></div>
+		<div class="opcja"><a href="logout.php">wyloguj</a></div>
+		<div style="clear:both;"></div>
+		</div>
 	</div>
+
 </body>
 </html>
